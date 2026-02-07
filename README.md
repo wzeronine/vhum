@@ -2,4 +2,4 @@
 
 ### verificador de humano
 
-javascript captura click ou touch, envia para o servidor, que analisa e da notas.
+vhum - verificador de humano | bot verify | try to be a bot | stop being a bot | javascript cliente
