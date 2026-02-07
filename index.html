@@ -1,42 +1,297 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vhum - verificador de humano - bot verify</title>
-	<meta name="description" content="vhum - verificador de humano - bot verify; javascript responsavél por capturar eventos click e touch para serem trabalhados no servidor.">
+    <title>vhum - verificador de humano | bot verify | try to be a bot | stop being a bot | javascript cliente</title>
+    <meta name="description" content="vhum - verificador de humano - bot verify; try to be a bot; stop being a bot; javascript cliente primeiro.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="icaro - github.com/wzeronine">
     <meta property="og:title" content="vhum js - verificador de humano - bot verify ">
-    <meta property="og:description" content="vhum - verificador de humano - bot verify; javascript responsavél por capturar eventos click e touch para serem trabalhados no servidor.">
+    <meta property="og:description" content="vhum - verificador de humano - bot verify; stop being a bot,  javascript cliente primeiro.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vhum.com">
     <meta name="twitter:site" content="@iwzeronine">
-    
-    <style>:root{--bg-color:#000;--text-color:#fff;--primary-color:#fff;--border-color:#eaeaea;--hover-color:#f5f5f5;box-sizinG:border-box}body{font-family:monospace;background-color:var(--bg-color);color:var(--text-color);margin:0;padding:0;justify-content:center;align-items:center;min-height:100vh}.container{width:300px;max-width:300px;;margin:50px auto;width:100%;padding:2rem;border:1px solid var(--border-color);box-shadow:0 4px 6px rgb(0 0 0 / .05);box-sizing:border-box}h1{font-size:1.5rem;font-weight:300;margin-bottom:1.5rem}.checkbox-container{align-items:center;margin-bottom:1.5rem;cursor:pointer;user-select:none}.custom-checkbox{width:20px;height:20px;display:inline-block;border:2px solid var(--primary-color);border-radius:4px;margin-right:12px;justify-content:center;align-items:center;transition:all 0.2s}.custom-checkbox.checked{background-color:var(--primary-color)}.custom-checkbox.checked::after{content:"✓";color:#fff;font-size:14px}.data-display{width:100%;padding:2rem;margin-top:2rem;background-color:#f9f9f9;color:#000;border-radius:6px;font-family:monospace;font-size:.875rem;overflow:scroll}.status{margin-top:1rem;padding:.5rem;border-radius:4px;font-weight:500}.status.verified{background-color:#e6f7e6;color:#1a8917}.status.bot{background-color:#feecec;color:#d33f3f}.archives{width:300px;margin:10px auto;text-align:center}.archives a{color:#fff;text-align:center}</style>
-<script async="" src="index_arquivos/js"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-V1H2KVFN0X');
-</script></head>
 
+    <style>:root{--bg:#020202;--green:#00ff41;--red:#ff3131;--gray:#1a1a1a;--terminal-font:monospace}*{box-sizing:border-box;-webkit-tap-highlight-color:#fff0}body{background:var(--bg);color:var(--green);font-family:var(--terminal-font);display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:15px}.terminal{width:100%;max-width:500px;border:1px solid var(--gray);background:#000;padding:clamp(15px, 5vw, 25px);box-shadow:0 0 40px rgb(0 255 65 / .03);border-radius:4px;position:relative;overflow:hidden}.terminal::before{content:" ";display:block;position:absolute;top:0;left:0;bottom:0;right:0;background:linear-gradient(#fff0 50%,rgb(0 0 0 / .25) 50%),linear-gradient(90deg,rgb(255 0 0 / .06),rgb(0 255 0 / .02),rgb(0 0 255 / .06));z-index:10;background-size:100% 2px,3px 100%;pointer-events:none}.header{border-bottom:1px solid var(--gray);margin-bottom:20px;padding-bottom:10px;font-size:clamp(0.7rem, 2.5vw, 0.85rem);letter-spacing:1px;display:flex;justify-content:space-between}.checkbox-zone{border:2px solid var(--gray);padding:clamp(15px, 4vw, 25px);display:flex;align-items:center;gap:15px;cursor:crosshair;transition:all 0.3s ease;background:rgb(10 10 10 / .5)}.checkbox-zone:hover,.checkbox-zone:active{border-color:var(--green);background:rgb(0 255 65 / .02)}input[type="checkbox"]{width:28px;height:28px;min-width:28px;cursor:pointer;accent-color:var(--green)}span{font-size:clamp(0.65rem, 2.5vw, 0.75rem);user-select:none}#log{font-size:clamp(0.60rem, 2vw, 0.70rem);height:250px;overflow-y:auto;margin-top:20px;color:#00bd15;border-top:1px dashed var(--gray);padding-top:15px;scroll-behavior:smooth}#log::-webkit-scrollbar{width:4px}#log::-webkit-scrollbar-thumb{background:var(--gray)}.stat-line{display:flex;justify-content:space-between;margin-bottom:4px;border-bottom:1px solid rgb(255 255 255 / .02)}.danger{color:var(--red);text-shadow:0 0 5px var(--red)}.success{color:var(--green);text-shadow:0 0 5px var(--green)}.info{font-size:.6rem;color:#444;margin-top:15px;text-align:center;text-transform:uppercase}@media (max-width:600px){.terminal{max-width:100%;border:none;padding:10px}.checkbox-zone{flex-direction:row}}</style>
+        <style>
+        /* Animações adicionadas */
+        .terminal { opacity: 0; transform: translateY(8px); transition: opacity 450ms ease, transform 450ms ease; }
+        .terminal.show { opacity: 1; transform: translateY(0); }
 
+        .terminal-glow { box-shadow: 0 0 40px rgba(0,255,65,0.12), inset 0 0 10px rgba(0,255,65,0.02); transition: box-shadow 400ms ease; }
+
+        .stat-line .msg { display: inline-block; white-space: pre-wrap; }
+        .stat-line .time { opacity: 0.75; font-size: 0.85em; }
+
+        .typing-caret { border-right: 2px solid var(--green); animation: blink-caret 800ms step-end infinite; }
+
+        @keyframes blink-caret { 50% { border-color: transparent; } }
+
+        .checkbox-zone.pulse { animation: pulse 800ms ease; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } } 
+        </style>
+</head>
 <body>
-    <div class="container">
-        <h1>vhum</h1>
-        <div class="checkbox-container">
-            <input type="checkbox" class="custom-checkbox" id="vhum-check"/>
-            <span>não sou robô</span>
-        </div>
-            
-        <div class="data">
-            <h3>data:</h3>
-            <pre id="data-display"></pre>
-            <div class="status" id="verificationStatus"></div>
-        </div>
+
+<div class="terminal">
+    <div class="header">vhum.io • try to be a bot • stop being a bot.</div>
+    <div class="checkbox-zone" id="vhum-area">
+        <input type="checkbox" id="main-check">
+        <span>am I a bot?</span>
     </div>
-    <div class="archives"><a href="https://vhum.io/vhum.js" target="_blank">vhum.js(6,1kb)</a><span> | </span><a href="https://vhum.io/vhum.min.js" target="_blank">vhum.min.js(4kb)</a></div>
-	<script defer="defer" src="vhum.min.js"></script>
-    <script>document.addEventListener('DOMContentLoaded',() => {const checkboxElement=document.getElementById("vhum-check");const displayElement=document.getElementById("data-display");if (checkboxElement && displayElement){new HumanVerifier(checkboxElement, displayElement,3);}});
-    </script>
+    <div id="log">> waiting for 'biosignal'...</div>
+</div>
+<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+<script>
+class Perceptron {
+    constructor() {
+        this.weights = {
+            fitts: 1.8,        
+            temporal: 1.2,     
+            decision: 1.5,     
+            jitter: 0.8,       
+            dwell: 0.9       
+        };
+        this.bias = -2.2;  
+    }
+
+    sigmoid(z) {
+        return 1 / (1 + Math.exp(-z));
+    }
+
+    predict(inputs) {
+        let z = this.bias;
+        for (let key in inputs) {
+            z += inputs[key] * this.weights[key];
+        }
+        return this.sigmoid(z);
+    }
+}
+
+class Vhum {
+    constructor() {
+        this.area = document.getElementById('vhum-area');
+        this.check = document.getElementById('main-check');
+        this.log = document.getElementById('log');
+        this.nn = new Perceptron();
+
+        this.points = [];
+        this.isTracking = false;
+        this.t_entry = 0;
+        this.t_down = 0;
+        this.entry_pos = { x: 0, y: 0 };
+
+        this.init();
+    }
+
+    init() {
+
+        const startEv = 'ontouchstart' in window ? 'touchstart' : 'mousedown';
+        const moveEv = 'ontouchmove' in window ? 'touchmove' : 'mousemove';
+        const endEv = 'ontouchend' in window ? 'touchend' : 'mouseup';
+
+        this.area.addEventListener('mouseenter', (e) => this.handleEntry(e));
+        this.area.addEventListener('touchstart', (e) => this.handleEntry(e.touches[0]));
+
+        this.area.addEventListener(startEv, (e) => this.handleStart(e.touches ? e.touches[0] : e));
+        window.addEventListener(moveEv, (e) => this.handleMove(e.touches ? e.touches[0] : e), { passive: false });
+        window.addEventListener(endEv, (e) => this.handleEnd(e));
+
+        
+        $(document).ready(() => {
+            setTimeout(() => {
+                $('.terminal').addClass('show');
+                $('.terminal').addClass('terminal-glow');
+                
+                setTimeout(() => $('.terminal').removeClass('terminal-glow'), 1750);
+            }, 250);
+
+            
+            $('#vhum-area').on('click touchstart', function () {
+                const $this = $(this);
+                $this.addClass('pulse');
+                setTimeout(() => $this.removeClass('pulse'), 750);
+            });
+        });
+    }
+
+    handleEntry(e) {
+        this.t_entry = performance.now();
+        this.entry_pos = { x: e.clientX, y: e.clientY };
+        this.writeLog("BIOSIGNAL_DETECTED: Analisando intenção...");
+    }
+
+    handleStart(e) {
+        this.t_down = performance.now();
+        this.isTracking = true;
+        this.points = [];
+        this.addPoint(e);
+    }
+
+    handleMove(e) {
+        if (!this.isTracking) return;
+        this.addPoint(e);
+    }
+
+    addPoint(e) {
+        this.points.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+    }
+
+    handleEnd(e) {
+        if (!this.isTracking) return;
+        this.isTracking = false;
+        this.finalize();
+    }
+
+    writeLog(msg, color = "") {
+        const line = document.createElement('div');
+        line.className = "stat-line " + color;
+
+        const msgSpan = document.createElement('span');
+        msgSpan.className = 'msg typing-caret';
+        msgSpan.textContent = ''; 
+
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'time';
+        timeSpan.textContent = `[${new Date().toLocaleTimeString()}]`;
+
+        line.appendChild(msgSpan);
+        line.appendChild(timeSpan);
+        this.log.prepend(line);
+
+        
+        const that = this;
+        $(msgSpan).text('');
+        this.typeText($(msgSpan), `> ${msg}`, 10, () => {
+            msgSpan.classList.remove('typing-caret');
+        });
+    }
+
+    typeText($el, text, speed = 10, cb) {
+        let i = 0;
+        const len = text.length;
+        const timer = setInterval(() => {
+            i++;
+            $el.text(text.slice(0, i));
+            if (i >= len) {
+                clearInterval(timer);
+                if (cb) cb();
+            }
+        }, speed);
+    }
+
+finalize() {
+        const t_up = performance.now();
+        const dwellTime = t_up - this.t_down;
+        const decisionTime = Math.max(this.t_down - this.t_entry, 100);
+        const movementTime = t_up - this.t_entry;
+        
+        this.t_entry = 0;
+
+        const targetRect = this.check.getBoundingClientRect();
+        const D = Math.hypot((targetRect.left + 12) - this.entry_pos.x, (targetRect.top + 12) - this.entry_pos.y);
+        const ID = Math.log2((2 * D) / 24 + 1);
+        const fittsViolation = (movementTime < 180 && ID > 1.2);
 
 
+        const jitter = this.analyzeJitter(this.points);
 
-</body></html>
+        const temporalViolation = this.checkTemporalPrecision(this.points);
+
+        const failureReasons = [];
+        if (fittsViolation) failureReasons.push("VIOLAÇÃO_LEI_FITTS: Movimento rápido demais para a distância.");
+        if (temporalViolation) failureReasons.push("PRECISÃO_SINTÉTICA: Timestamps perfeitamente alinhados ao clock da CPU.");
+        if (decisionTime < 200) failureReasons.push("REACAO_INFRA_HUMANA: Tempo de decisão abaixo do limite neural.");
+        if (jitter.isWhiteNoise) failureReasons.push("RUIDO_BRANCO: Ausência de tremor biológico.");
+        if (dwellTime < 50) failureReasons.push("DWELL_TIME_CRITICO: Clique rápido demais.");
+
+
+        const inputs = {
+            fitts: fittsViolation ? 1 : 0,
+            temporal: temporalViolation ? 1 : 0,
+            decision: decisionTime < 200 ? 1 : 0,
+            jitter: jitter.isWhiteNoise ? 1 : 0,
+            dwell: (dwellTime < 50 || dwellTime > 600) ? 1 : 0
+        };
+
+        const botProbability = this.nn.predict(inputs);
+        const isBot = botProbability > 0.60; 
+
+        this.renderReport(isBot, botProbability, {
+            dwellTime, decisionTime, ID,
+            reasons: failureReasons,
+            score: (botProbability * 100).toFixed(2)
+        });
+    }
+
+    renderReport(isBot, prob, data) {
+
+        this.writeLog(`--- ANÁLISE FINALIZADA ---`, isBot ? "danger" : "success");
+
+        if (isBot) {
+            this.check.checked = false;
+            this.area.style.borderColor = "var(--red)";
+            this.writeLog(`PROBALIDADE_BOT: ${data.score}%`, "danger");
+            this.writeLog(`STATUS: ACESSO_NEGADO`, "danger");
+
+
+            data.reasons.forEach(reason => {
+                this.writeLog(`>> ${reason}`, "danger");
+            });
+        } else {
+            this.area.style.borderColor = "var(--green)";
+            this.writeLog(`PROBALIDADE_BOT: ${data.score}%`, "success");
+            this.writeLog(`STATUS: 'HUMANO' CONFIRMADO`, "success");
+            this.writeLog(`>> Sinais 'biomecânicos' consistentes.`);
+        }
+
+        this.writeLog(`DWELL: ${data.dwellTime.toFixed(0)}ms | REACTION: ${data.decisionTime.toFixed(0)}ms`);
+    }
+
+    analyzeJitter(pts) {
+        if (pts.length < 5) return { jerk: 0, isWhiteNoise: false };
+        
+        let dts = [];
+        for (let i = 1; i < pts.length; i++) dts.push(pts[i].t - pts[i-1].t);
+        const meanDt = dts.reduce((a,b)=>a+b)/dts.length;
+        const varianceDt = dts.reduce((a,b) => a + Math.pow(b - meanDt, 2), 0) / dts.length;
+        
+        let velocities = [];
+        for (let i = 1; i < pts.length; i++) {
+            const dx = pts[i].x - pts[i-1].x;
+            const dy = pts[i].y - pts[i-1].y;
+            const dt = dts[i-1] || 16;
+            velocities.push(Math.sqrt(dx*dx + dy*dy) / (dt + 1));
+        }
+        
+        const meanVel = velocities.reduce((a,b)=>a+b)/velocities.length;
+        const varVel = velocities.reduce((a,b) => a + Math.pow(b - meanVel, 2), 0) / velocities.length;
+    
+        const isSuspiciouslySmooth = varianceDt < 0.02 && varVel < 0.05;
+        
+        return { isWhiteNoise: isSuspiciouslySmooth, jerk: varVel };
+    }
+
+    checkTemporalPrecision(pts) {
+        if (pts.length < 5) return false; 
+        
+        let dts = [];
+        for (let i = 1; i < pts.length; i++) {
+            dts.push(pts[i].t - pts[i-1].t);
+        }
+        const perfectMultiples = dts.filter(dt => Math.abs(dt - 16.67) < 1 || Math.abs(dt - 33.33) < 1).length;
+        const suspiciousSync = dts.length > 0 && perfectMultiples / dts.length > 0.7;
+
+        return suspiciousSync;
+    }
+
+
+}
+
+new Vhum();
+</script>
+
+</body>
+</html>
