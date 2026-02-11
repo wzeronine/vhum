@@ -4,34 +4,23 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vhum - verificador de humano | bot verify | try to be a bot | stop being a bot | javascript cliente</title>
+    <title>vhum - verificador de humano | bot verify | try to be a bot | stop being a bot</title>
     <meta name="description" content="vhum - verificador de humano - bot verify; try to be a bot; stop being a bot; javascript cliente primeiro.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="icaro - github.com/wzeronine">
-    <meta property="og:title" content="vhum js - verificador de humano - bot verify ">
-    <meta property="og:description" content="vhum - verificador de humano - bot verify; stop being a bot,  javascript cliente primeiro.">
+    <link rel="canonical" href="https://vhum.io">
+    <meta property="og:title" content="vhum - verificador de humano - bot verify;">
+    <meta property="og:description" content="vhum - verificador de humano - bot verify; try to be a bot; stop being a bot; javascript cliente primeiro.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vhum.com">
+    <meta property="og:url" content="https://vhum.io">
     <meta name="twitter:site" content="@iwzeronine">
 
-    <style>:root{--bg:#020202;--green:#00ff41;--red:#ff3131;--gray:#1a1a1a;--terminal-font:monospace}*{box-sizing:border-box;-webkit-tap-highlight-color:#fff0}body{background:var(--bg);color:var(--green);font-family:var(--terminal-font);display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:15px}.terminal{width:100%;max-width:500px;border:1px solid var(--gray);background:#000;padding:clamp(15px, 5vw, 25px);box-shadow:0 0 40px rgb(0 255 65 / .03);border-radius:4px;position:relative;overflow:hidden}.terminal::before{content:" ";display:block;position:absolute;top:0;left:0;bottom:0;right:0;background:linear-gradient(#fff0 50%,rgb(0 0 0 / .25) 50%),linear-gradient(90deg,rgb(255 0 0 / .06),rgb(0 255 0 / .02),rgb(0 0 255 / .06));z-index:10;background-size:100% 2px,3px 100%;pointer-events:none}.header{border-bottom:1px solid var(--gray);margin-bottom:20px;padding-bottom:10px;font-size:clamp(0.7rem, 2.5vw, 0.85rem);letter-spacing:1px;display:flex;justify-content:space-between}.checkbox-zone{border:2px solid var(--gray);padding:clamp(15px, 4vw, 25px);display:flex;align-items:center;gap:15px;cursor:crosshair;transition:all 0.3s ease;background:rgb(10 10 10 / .5)}.checkbox-zone:hover,.checkbox-zone:active{border-color:var(--green);background:rgb(0 255 65 / .02)}input[type="checkbox"]{width:28px;height:28px;min-width:28px;cursor:pointer;accent-color:var(--green)}span{font-size:clamp(0.65rem, 2.5vw, 0.75rem);user-select:none}#log{font-size:clamp(0.60rem, 2vw, 0.70rem);height:250px;overflow-y:auto;margin-top:20px;color:#00bd15;border-top:1px dashed var(--gray);padding-top:15px;scroll-behavior:smooth}#log::-webkit-scrollbar{width:4px}#log::-webkit-scrollbar-thumb{background:var(--gray)}.stat-line{display:flex;justify-content:space-between;margin-bottom:4px;border-bottom:1px solid rgb(255 255 255 / .02)}.danger{color:var(--red);text-shadow:0 0 5px var(--red)}.success{color:var(--green);text-shadow:0 0 5px var(--green)}.info{font-size:.6rem;color:#444;margin-top:15px;text-align:center;text-transform:uppercase}@media (max-width:600px){.terminal{max-width:100%;border:none;padding:10px}.checkbox-zone{flex-direction:row}}</style>
-        <style>
-        /* Animações adicionadas */
-        .terminal { opacity: 0; transform: translateY(8px); transition: opacity 450ms ease, transform 450ms ease; }
-        .terminal.show { opacity: 1; transform: translateY(0); }
-
-        .terminal-glow { box-shadow: 0 0 40px rgba(0,255,65,0.12), inset 0 0 10px rgba(0,255,65,0.02); transition: box-shadow 400ms ease; }
-
-        .stat-line .msg { display: inline-block; white-space: pre-wrap; }
-        .stat-line .time { opacity: 0.75; font-size: 0.85em; }
-
-        .typing-caret { border-right: 2px solid var(--green); animation: blink-caret 800ms step-end infinite; }
-
-        @keyframes blink-caret { 50% { border-color: transparent; } }
-
-        .checkbox-zone.pulse { animation: pulse 800ms ease; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } } 
-        </style>
+    <style>:root{--bg:#020202;--green:#00ff41;--red:#ff3131;--gray:#1a1a1a;--terminal-font:monospace}*{box-sizing:border-box;-webkit-tap-highlight-color:#fff0}body{background:var(--bg);color:var(--green);font-family:var(--terminal-font);display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;padding:15px}.terminal{width:100%;max-width:520px;border:1px solid var(--gray);background:#000;padding:clamp(12px, 4vw, 20px);box-shadow:0 0 40px rgb(0 255 65 / .03);border-radius:6px;position:relative;overflow:hidden}.terminal::before{content:" ";display:block;position:absolute;top:0;left:0;bottom:0;right:0;background:linear-gradient(#fff0 50%,rgb(0 0 0 / .25) 50%),linear-gradient(90deg,rgb(255 0 0 / .06),rgb(0 255 0 / .02),rgb(0 0 255 / .06));z-index:10;background-size:100% 2px,3px 100%;pointer-events:none}.header{border-bottom:1px solid var(--gray);margin-bottom:12px;padding-bottom:8px;font-size:clamp(0.7rem, 2.5vw, 0.85rem);letter-spacing:1px;display:flex;justify-content:space-between}.checkbox-zone{border:2px solid var(--gray);padding:clamp(12px, 3vw, 18px);display:flex;align-items:center;gap:12px;cursor:crosshair;transition:all 0.22s ease;background:rgb(10 10 10 / .5);border-radius:6px}.checkbox-zone:hover,.checkbox-zone:active{border-color:var(--green);background:rgb(0 255 65 / .02);transform:translateY(-1px)}input[type="checkbox"]{width:28px;height:28px;min-width:28px;cursor:pointer;accent-color:var(--green)}span{font-size:clamp(0.65rem, 2.5vw, 0.75rem);user-select:none}#log{font-size:clamp(0.60rem, 2vw, 0.70rem);height:180px;overflow-y:auto;margin-top:14px;color:#00bd15;border-top:1px dashed var(--gray);padding-top:12px;scroll-behavior:smooth}#log::-webkit-scrollbar{width:6px}#log::-webkit-scrollbar-thumb{background:var(--gray)}.stat-line{display:flex;justify-content:space-between;margin-bottom:6px;border-bottom:1px solid rgb(255 255 255 / .02);padding-bottom:4px}.danger{color:var(--red);text-shadow:0 0 5px var(--red)}.success{color:var(--green);text-shadow:0 0 5px var(--green)}.info{font-size:.6rem;color:#444;margin-top:15px;text-align:center;text-transform:uppercase}.terminal { opacity: 0; transform: translateY(8px); transition: opacity 450ms ease, transform 450ms ease; }.terminal.show { opacity: 1; transform: translateY(0); }.terminal-glow { box-shadow: 0 0 40px rgba(0,255,65,0.12), inset 0 0 10px rgba(0,255,65,0.02); transition: box-shadow 400ms ease; }.stat-line .msg { display: inline-block; white-space: pre-wrap; }.stat-line .time { opacity: 0.75; font-size: 0.85em; }.typing-caret { border-right: 2px solid var(--green); animation: blink-caret 800ms step-end infinite; }@keyframes blink-caret { 50% { border-color: transparent; } }.checkbox-zone.pulse { animation: pulse 800ms ease; }@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } }.stat-row{display:flex;align-items:center;gap:10px;margin:6px 0}.stat-row .label{width:100px;color:#9bdca3;font-size:0.75rem;text-transform:uppercase}.bar-wrap{flex:1;background:#0b0b0b;border:1px solid #111;height:14px;border-radius:8px;position:relative;overflow:hidden}.bar-wrap .bar{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--green),#8cff8c);box-shadow:0 0 8px rgba(0,255,65,0.06)}.bar-wrap .pct{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:0.72rem;color:#7ff7a6}.stat-row .label.small{width:80px}.stat-row .hint{font-size:0.7rem;color:#555;margin-left:8px}.quiet{color:#444;font-size:0.8rem}@media (max-width:600px){.terminal{max-width:100%;border:none;padding:10px}.checkbox-zone{flex-direction:row}.stat-row .label{width:86px;font-size:0.7rem}.bar-wrap .pct{font-size:0.68rem}}
+</style>    
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-V1H2KVFN0X"></script>
+	<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-V1H2KVFN0X');</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5630239568507479"
+     crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -41,32 +30,177 @@
         <input type="checkbox" id="main-check">
         <span>am I a bot?</span>
     </div>
+
+    <div id="stats" style="margin-top:14px;">
+        <div class="stat-row"><div class="label">DWELL</div><div class="bar-wrap" id="bar-dwell"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">REACTION</div><div class="bar-wrap" id="bar-decision"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">FITTS (ID)</div><div class="bar-wrap" id="bar-fitts"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">TEMPORAL</div><div class="bar-wrap" id="bar-temporal"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">JITTER</div><div class="bar-wrap" id="bar-jitter"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">SPEED</div><div class="bar-wrap" id="bar-speed"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">ACCEL</div><div class="bar-wrap" id="bar-accel"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">CURVATURE</div><div class="bar-wrap" id="bar-curvature"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">ENTROPY</div><div class="bar-wrap" id="bar-entropy"><div class="bar"></div><div class="pct">0%</div></div></div>
+        <div class="stat-row"><div class="label">PAUSES</div><div class="bar-wrap" id="bar-pauses"><div class="bar"></div><div class="pct">0%</div></div></div>
+    </div>
+
     <div id="log">> waiting for 'biosignal'...</div>
+    <div class="info" style="margin-top: 20px;"><a href="./v3/example.html" style="color: var(--green); text-decoration: none;">v3 example</a></div>
 </div>
 <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 <script>
-class Perceptron {
-    constructor() {
-        this.weights = {
-            fitts: 1.8,        
-            temporal: 1.2,     
-            decision: 1.5,     
-            jitter: 0.8,       
-            dwell: 0.9       
+class InputTypeDetector {
+    static TYPES = {
+        MOUSE: 'mouse',
+        TOUCH: 'touch',
+        UNKNOWN: 'unknown'
+    };
+
+    static detect(points, inputSource) {
+        if (inputSource === 'touch') return this.TYPES.TOUCH;
+        if (inputSource === 'mouse') return this.TYPES.MOUSE;
+        
+        if (points.length < 10) return this.TYPES.UNKNOWN;
+
+        const jitterAnalysis = this._analyzeJitterPattern(points);
+        const dwellAnalysis = this._analyzeDwellCharacteristics(points);
+        const speedProfile = this._analyzeSpeedProfile(points);
+
+        const touchScore = (jitterAnalysis.highVariance * 0.3) + 
+                          (dwellAnalysis.largeContactArea * 0.3) + 
+                          (speedProfile.smoothProfile * 0.2) + 
+                          (speedProfile.lowPrecision * 0.2);
+
+        const mouseScore = (jitterAnalysis.precisionPattern * 0.3) + 
+                          (dwellAnalysis.pointContact * 0.3) + 
+                          (speedProfile.sharpProfile * 0.2) + 
+                          (speedProfile.highPrecision * 0.2);
+
+        return touchScore > mouseScore ? this.TYPES.TOUCH : this.TYPES.MOUSE;
+    }
+
+    static _analyzeJitterPattern(points) {
+        let dts = [];
+        for (let i = 1; i < points.length; i++) dts.push(Math.max(0.1, points[i].t - points[i-1].t));
+        
+        const dtVariance = dts.reduce((a,b) => a + Math.pow(b - (dts.reduce((x,y)=>x+y)/dts.length), 2), 0) / dts.length;
+        const dtStdDev = Math.sqrt(dtVariance);
+        const dtMean = dts.reduce((a,b)=>a+b)/dts.length;
+        const dtCV = dtStdDev / dtMean;
+
+        return {
+            highVariance: Math.min(1, dtCV / 0.15),
+            precisionPattern: Math.max(0, 1 - dtCV / 0.08)
         };
-        this.bias = -2.2;  
+    }
+
+    static _analyzeDwellCharacteristics(points) {
+        if (points.length < 5) return { largeContactArea: 0.5, pointContact: 0.5 };
+
+        let distances = [];
+        const centroid = {
+            x: points.reduce((a,b) => a + b.x, 0) / points.length,
+            y: points.reduce((a,b) => a + b.y, 0) / points.length
+        };
+
+        for (let i = 0; i < points.length; i++) {
+            distances.push(Math.hypot(points[i].x - centroid.x, points[i].y - centroid.y));
+        }
+
+        const avgDist = distances.reduce((a,b)=>a+b)/distances.length;
+        const maxDist = Math.max(...distances);
+        const spreadArea = maxDist > 15; 
+
+        return {
+            largeContactArea: spreadArea ? 0.8 : 0.2,
+            pointContact: spreadArea ? 0.2 : 0.8
+        };
+    }
+
+    static _analyzeSpeedProfile(points) {
+        if (points.length < 3) return { smoothProfile: 0.5, sharpProfile: 0.5, lowPrecision: 0.5, highPrecision: 0.5 };
+
+        let speeds = [];
+        for (let i = 1; i < points.length; i++) {
+            const dx = points[i].x - points[i-1].x;
+            const dy = points[i].y - points[i-1].y;
+            const dtMs = Math.max(8, points[i].t - points[i-1].t); // min 8 ms
+            const dt = dtMs / 1000; // seconds
+            speeds.push(Math.sqrt(dx*dx + dy*dy) / dt);
+        }
+
+        const mean = speeds.reduce((a,b)=>a+b,0)/speeds.length;
+        const speedVar = speeds.reduce((a,b) => a + Math.pow(b - mean, 2), 0) / speeds.length;
+        const speedStd = Math.sqrt(speedVar || 0);
+        const speedCV = Math.abs(mean) > 1e-6 ? speedStd / mean : 0;
+
+        return {
+            smoothProfile: Math.min(1, speedCV / 0.5),
+            sharpProfile: Math.max(0, 1 - speedCV / 0.3),
+            lowPrecision: Math.min(1, speedCV / 0.6),
+            highPrecision: Math.max(0, 1 - speedCV / 0.4)
+        };
+    }
+}
+
+class AdaptivePerceptron {
+    constructor(inputType = 'mouse') {
+        this.inputType = inputType;
+        this._initializeWeights();
+    }
+
+    _initializeWeights() {
+        if (this.inputType === InputTypeDetector.TYPES.TOUCH) {
+            this.weights = {
+                fitts: 1.6,
+                temporal: 1.3,
+                decision: 1.7,
+                jitter: 0.35,
+                dwell: 0.75,
+                speed: 0.35,
+                accel: 0.4,
+                curvature: 0.25,
+                entropy: 0.2,
+                pauses: 1.0
+            };
+            this.bias = -2.6;
+            this.threshold = 0.62;
+        } else {
+            this.weights = {
+                fitts: 2.2,
+                temporal: 2.1,
+                decision: 2.3,
+                jitter: 0.9,
+                dwell: 1.4,
+                speed: 0.5,
+                accel: 0.6,
+                curvature: 0.4,
+                entropy: 0.3,
+                pauses: 1.7
+            };
+            this.bias = -3.2;
+            this.threshold = 0.68;
+        }
     }
 
     sigmoid(z) {
-        return 1 / (1 + Math.exp(-z));
+        return 1 / (1 + Math.exp(-Math.max(-100, Math.min(100, z))));
     }
 
     predict(inputs) {
         let z = this.bias;
         for (let key in inputs) {
-            z += inputs[key] * this.weights[key];
+            const w = this.weights[key] || 0;
+            z += (inputs[key] || 0) * w;
         }
-        return this.sigmoid(z);
+        this.lastZ = z;
+        const p = this.sigmoid(z);
+        this.lastP = p;
+        return p;
+    }
+
+    getThreshold() {
+        return this.threshold;
     }
 }
 
@@ -75,29 +209,116 @@ class Vhum {
         this.area = document.getElementById('vhum-area');
         this.check = document.getElementById('main-check');
         this.log = document.getElementById('log');
-        this.nn = new Perceptron();
 
         this.points = [];
         this.isTracking = false;
         this.t_entry = 0;
         this.t_down = 0;
         this.entry_pos = { x: 0, y: 0 };
+        
+        this.lastInputSource = null;
+        this.inputType = InputTypeDetector.TYPES.UNKNOWN;
+        this.nnMouse = new AdaptivePerceptron(InputTypeDetector.TYPES.MOUSE);
+        this.nnTouch = new AdaptivePerceptron(InputTypeDetector.TYPES.TOUCH);
+        this.nn = this.nnMouse; // Default
+        
+        this.eventLog = [];
 
         this.init();
     }
 
     init() {
+        this.area.addEventListener('mouseenter', (e) => {
+            this.lastInputSource = 'mouse';
+            this.logEvent('mouseenter', e);
+            this.handleEntry(e);
+        }, { passive: true });
 
-        const startEv = 'ontouchstart' in window ? 'touchstart' : 'mousedown';
-        const moveEv = 'ontouchmove' in window ? 'touchmove' : 'mousemove';
-        const endEv = 'ontouchend' in window ? 'touchend' : 'mouseup';
+        this.area.addEventListener('mouseover', (e) => {
+            if (!this.isTracking && this.lastInputSource !== 'touch') {
+                this.logEvent('mouseover', e);
+            }
+        }, { passive: true });
 
-        this.area.addEventListener('mouseenter', (e) => this.handleEntry(e));
-        this.area.addEventListener('touchstart', (e) => this.handleEntry(e.touches[0]));
+        this.area.addEventListener('pointerenter', (e) => {
+            if (e.pointerType === 'mouse') {
+                this.logEvent('pointerenter_mouse', e);
+            }
+        }, { passive: true });
 
-        this.area.addEventListener(startEv, (e) => this.handleStart(e.touches ? e.touches[0] : e));
-        window.addEventListener(moveEv, (e) => this.handleMove(e.touches ? e.touches[0] : e), { passive: false });
-        window.addEventListener(endEv, (e) => this.handleEnd(e));
+        this.area.addEventListener('touchstart', (e) => {
+            this.lastInputSource = 'touch';
+            this.logEvent('touchstart', e);
+            this.handleEntry(e.touches[0]);
+            this.handleStart(e.touches[0]);
+        }, { passive: false });
+
+        this.area.addEventListener('pointerdown', (e) => {
+            this.logEvent('pointerdown_' + e.pointerType, e);
+            if (e.pointerType === 'touch') {
+                if (!this.lastInputSource) this.lastInputSource = 'touch';
+            } else if (e.pointerType === 'mouse') {
+                if (!this.lastInputSource) this.lastInputSource = 'mouse';
+                this.handleStart(e);
+            }
+        }, { passive: false });
+
+        this.area.addEventListener('mousedown', (e) => {
+            if (!this.lastInputSource) this.lastInputSource = 'mouse';
+            this.logEvent('mousedown', e);
+            this.handleStart(e);
+        }, { passive: false });
+
+        window.addEventListener('mousemove', (e) => {
+            if (this.isTracking && this.lastInputSource === 'mouse') {
+                this.handleMove(e);
+            }
+        }, { passive: false });
+
+        window.addEventListener('touchmove', (e) => {
+            if (this.isTracking && this.lastInputSource === 'touch') {
+                e.preventDefault();
+                this.handleMove(e.touches[0]);
+            }
+        }, { passive: false });
+
+        window.addEventListener('pointermove', (e) => {
+            if (this.isTracking) {
+                if (e.pointerType === 'touch' && this.lastInputSource === 'touch') {
+                    this.handleMove(e);
+                } else if (e.pointerType === 'mouse' && this.lastInputSource === 'mouse') {
+                    this.handleMove(e);
+                }
+            }
+        }, { passive: false });
+
+        window.addEventListener('mouseup', (e) => {
+            if (this.isTracking && this.lastInputSource === 'mouse') {
+                this.logEvent('mouseup', e);
+                this.handleEnd(e);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            if (this.isTracking && this.lastInputSource === 'touch') {
+                this.logEvent('touchend', e);
+                this.handleEnd(e);
+            }
+        }, { passive: false });
+
+        window.addEventListener('pointerup', (e) => {
+            if (this.isTracking) {
+                this.logEvent('pointerup_' + e.pointerType, e);
+                this.handleEnd(e);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchcancel', (e) => {
+            if (this.isTracking) {
+                this.logEvent('touchcancel', e);
+                this.handleEnd(e);
+            }
+        }, { passive: true });
 
         
         $(document).ready(() => {
@@ -114,13 +335,31 @@ class Vhum {
                 $this.addClass('pulse');
                 setTimeout(() => $this.removeClass('pulse'), 750);
             });
+
+            function resetBars() {
+                ['dwell','decision','fitts','temporal','jitter','speed','accel','curvature','entropy','pauses'].forEach(id => {
+                    $(`#bar-${id} .bar`).css('width','0%');
+                    $(`#bar-${id} .pct`).text('0%');
+                });
+            }
+            resetBars();
+        });
+    }
+
+    logEvent(eventName, event) {
+        this.eventLog.push({
+            event: eventName,
+            timestamp: performance.now(),
+            pointerType: event.pointerType || 'unknown',
+            isPrimary: event.isPrimary !== undefined ? event.isPrimary : 'N/A'
         });
     }
 
     handleEntry(e) {
         this.t_entry = performance.now();
         this.entry_pos = { x: e.clientX, y: e.clientY };
-        this.writeLog("BIOSIGNAL_DETECTED: Analisando intenção...");
+        const inputLabel = this.lastInputSource === 'touch' ? 'TOUCH' : 'MOUSE';
+        this.writeLog(`BIOSIGNAL_DETECTED [${inputLabel}]: Analisando intenção...`);
     }
 
     handleStart(e) {
@@ -182,113 +421,451 @@ class Vhum {
         }, speed);
     }
 
-finalize() {
+    finalize() {
+        this.inputType = InputTypeDetector.detect(this.points, this.lastInputSource);
+        
+        if (this.inputType === InputTypeDetector.TYPES.TOUCH) {
+            this.nn = this.nnTouch;
+        } else {
+            this.nn = this.nnMouse;
+        }
+
         const t_up = performance.now();
         const dwellTime = t_up - this.t_down;
         const decisionTime = Math.max(this.t_down - this.t_entry, 100);
         const movementTime = t_up - this.t_entry;
         
         this.t_entry = 0;
-
+        
         const targetRect = this.check.getBoundingClientRect();
-        const D = Math.hypot((targetRect.left + 12) - this.entry_pos.x, (targetRect.top + 12) - this.entry_pos.y);
-        const ID = Math.log2((2 * D) / 24 + 1);
-        const fittsViolation = (movementTime < 180 && ID > 1.2);
-
-
+        const entryPoint = this.entry_pos;
+        const targetCenter = { 
+            x: targetRect.left + targetRect.width/2, 
+            y: targetRect.top + targetRect.height/2 
+        };
+        
+        const D = Math.hypot(targetCenter.x - entryPoint.x, targetCenter.y - entryPoint.y);
+        const W = Math.min(targetRect.width, targetRect.height);
+        const ID = Math.max(0, Math.log2((2 * D) / (W + 1) + 1));
+        
+        const throughputExpected = this.inputType === InputTypeDetector.TYPES.TOUCH ? 2.5 : 4.0;
+        const timeExpectedFitts = (ID / throughputExpected) * 1000;
+        const fittsViolation = this.inputType === InputTypeDetector.TYPES.TOUCH ? 
+            movementTime < timeExpectedFitts * 0.35 :
+            movementTime < timeExpectedFitts * 0.6;
+        
         const jitter = this.analyzeJitter(this.points);
+        const speedStats = this.analyzeSpeed(this.points);
+        const accelStats = this.analyzeAcceleration(this.points);
+        const curvature = this.analyzeCurvature(this.points);
+        const entropy = this.analyzeEntropy(this.points);
+        const pauses = this.countPauses(this.points);
+        const temporalAnalysis = this.checkTemporalPrecision(this.points);
 
-        const temporalViolation = this.checkTemporalPrecision(this.points);
+        const temporalViolation = this.inputType === InputTypeDetector.TYPES.TOUCH ?
+            temporalAnalysis.isSuspicious && temporalAnalysis.perfectSync > 0.85 :
+            temporalAnalysis.isSuspicious;
 
         const failureReasons = [];
-        if (fittsViolation) failureReasons.push("VIOLAÇÃO_LEI_FITTS: Movimento rápido demais para a distância.");
-        if (temporalViolation) failureReasons.push("PRECISÃO_SINTÉTICA: Timestamps perfeitamente alinhados ao clock da CPU.");
-        if (decisionTime < 200) failureReasons.push("REACAO_INFRA_HUMANA: Tempo de decisão abaixo do limite neural.");
-        if (jitter.isWhiteNoise) failureReasons.push("RUIDO_BRANCO: Ausência de tremor biológico.");
-        if (dwellTime < 50) failureReasons.push("DWELL_TIME_CRITICO: Clique rápido demais.");
-
+        
+        if (fittsViolation) failureReasons.push("VIOLAÇÃO_LEI_FITTS: Throughput " + (ID / (movementTime/1000)).toFixed(2) + " bits/s (esperado ~" + throughputExpected.toFixed(1) + ")");
+        
+        if (temporalViolation) failureReasons.push("PRECISÃO_SINTÉTICA: Sincronismo=" + (temporalAnalysis.perfectSync*100).toFixed(0) + "%");
+        
+        if (decisionTime < 60) failureReasons.push("REACAO_INFRA_HUMANA: " + decisionTime + "ms");
+        
+        if (jitter.isWhiteNoise && this.inputType === InputTypeDetector.TYPES.MOUSE) {
+            failureReasons.push("TREMOR_ANOMALO: CV=" + jitter.cv.toFixed(3));
+        }
+        
+        const dwellMin = this.inputType === InputTypeDetector.TYPES.TOUCH ? 100 : 40;
+        const dwellMax = this.inputType === InputTypeDetector.TYPES.TOUCH ? 1500 : 1000;
+        if (dwellTime < dwellMin || dwellTime > dwellMax) {
+            failureReasons.push("DWELL_ANOMALO: " + dwellTime.toFixed(0) + "ms fora [" + dwellMin + "-" + dwellMax + "]ms");
+        }
+        
+        if (speedStats.distribution === 'uniform') {
+            failureReasons.push("VELOCIDADE_UNIFORME: Skewness=" + speedStats.skewness.toFixed(2));
+        }
+        
+        const accelLimit = this.inputType === InputTypeDetector.TYPES.TOUCH ? 7.5 : 5.0;
+        if (accelStats.accelerationInG > accelLimit && this.inputType === InputTypeDetector.TYPES.MOUSE) {
+            failureReasons.push("ACELERAÇÃO_SOBRE-HUMANA: " + accelStats.accelerationInG.toFixed(1) + "G");
+        }
+        
+        if (curvature.straightness < 0.45) {
+            failureReasons.push("TRAJETO_INEFICIENTE: Straightness=" + curvature.straightness.toFixed(2));
+        }
+        
+        if (entropy.dominance > 0.85 && this.inputType === InputTypeDetector.TYPES.MOUSE) {
+            failureReasons.push("MOVIMENTO_PREVISÍVEL: Dominância=" + (entropy.dominance*100).toFixed(0) + "%");
+        }
+        
+        if (pauses.pausePattern === 'continuous' && this.inputType === InputTypeDetector.TYPES.MOUSE) {
+            failureReasons.push("SEM_PAUSAS: Movimento contínuo");
+        }
 
         const inputs = {
             fitts: fittsViolation ? 1 : 0,
             temporal: temporalViolation ? 1 : 0,
-            decision: decisionTime < 200 ? 1 : 0,
+            decision: decisionTime < (this.inputType === InputTypeDetector.TYPES.TOUCH ? 220 : 150) ? 1 : 0,
             jitter: jitter.isWhiteNoise ? 1 : 0,
-            dwell: (dwellTime < 50 || dwellTime > 600) ? 1 : 0
+            dwell: (dwellTime < dwellMin || dwellTime > dwellMax) ? 1 : 0,
+            speed: 1 - speedStats.score,
+            accel: 1 - accelStats.score,
+            curvature: 1 - curvature.score,
+            entropy: Math.abs(entropy.normalizedEntropy - 0.6),
+            pauses: 1 - pauses.score
         };
 
         const botProbability = this.nn.predict(inputs);
-        const isBot = botProbability > 0.60; 
+        const threshold = this.nn.getThreshold();
+        const isBot = botProbability > threshold;
 
         this.renderReport(isBot, botProbability, {
             dwellTime, decisionTime, ID,
             reasons: failureReasons,
-            score: (botProbability * 100).toFixed(2)
+            score: (botProbability * 100).toFixed(2),
+            inputType: this.inputType,
+            threshold: (threshold * 100).toFixed(1),
+            fittsAnalysis: {
+                D: D.toFixed(0),
+                W: W.toFixed(0),
+                timeExpected: timeExpectedFitts.toFixed(0),
+                throughputBits: (ID / (movementTime/1000)).toFixed(2)
+            }
+        });
+        
+        this.animateBar('dwell', this.normalizeDwell(dwellTime));
+        this.animateBar('decision', this.normalizeReaction(decisionTime));
+        this.animateBar('fitts', Math.min(100, Math.round(ID * 15)));
+        this.animateBar('temporal', Math.round(temporalAnalysis.perfectSync * 100));
+        this.animateBar('jitter', Math.min(100, Math.round(Math.max(0, jitter.cv * 100))));
+        this.animateBar('speed', Math.min(100, Math.round(speedStats.score * 70)));
+        this.animateBar('accel', Math.min(100, Math.round(accelStats.score * 70)));
+        this.animateBar('curvature', Math.min(100, Math.round(curvature.score * 70)));
+        this.animateBar('entropy', Math.min(100, Math.round(entropy.score * 70)));
+        this.animateBar('pauses', Math.min(100, Math.round(pauses.score * 80)));
+    }
+
+    animateBar(id, value) {
+        const $bar = $(`#bar-${id} .bar`);
+        const $pct = $(`#bar-${id} .pct`);
+        $bar.stop(true).animate({width: value + '%'}, 700, 'swing');
+        $({n: parseInt($pct.text()) || 0}).animate({n: value}, {
+            duration: 700,
+            easing: 'swing',
+            step(now) { $pct.text(Math.round(now) + '%'); }
         });
     }
 
-    renderReport(isBot, prob, data) {
+    normalizeDwell(ms) {
+        if (this.inputType === InputTypeDetector.TYPES.TOUCH) {
+            if (ms < 50) return 75;
+            if (ms < 100) return 50 + Math.round(((100 - ms) / 50) * 20);
+            if (ms >= 100 && ms <= 180) return 12 + Math.random() * 14;
+            if (ms > 180 && ms <= 400) return 18 + Math.random() * 12;
+            if (ms > 400 && ms <= 800) return 25 + Math.random() * 15;
+            if (ms > 800 && ms <= 1500) return 38 + Math.random() * 18;
+            if (ms > 1500) return 68;
+            return 35;
+        }
+        if (ms < 25) return 75;        
+        if (ms < 50) return 55 + Math.round(((50 - ms) / 25) * 20);
+        if (ms >= 50 && ms <= 120) return 15 + Math.random() * 10;
+        if (ms > 120 && ms <= 300) return 20 + Math.random() * 8;
+        if (ms > 300 && ms <= 600) return 25 + Math.random() * 10;
+        if (ms > 600 && ms <= 1000) return 40 + Math.random() * 15;
+        if (ms > 1000) return 70;
+        return 35;
+    }
 
-        this.writeLog(`--- ANÁLISE FINALIZADA ---`, isBot ? "danger" : "success");
+    normalizeReaction(ms) {
+        if (this.inputType === InputTypeDetector.TYPES.TOUCH) {
+            if (ms < 110) return 82;
+            if (ms >= 110 && ms < 220) return 58 + Math.round(((220 - ms) / 110) * 22);
+            if (ms >= 220 && ms < 300) return 14 + Math.random() * 12;
+            if (ms >= 300 && ms < 450) return 22 + Math.random() * 14;
+            if (ms >= 450 && ms < 750) return 32 + Math.random() * 18;
+            if (ms >= 750 && ms < 1500) return 48 + Math.random() * 18;
+            if (ms >= 1500) return 72;
+            return 35;
+        }
+        if (ms < 80) return 85;
+        if (ms >= 80 && ms < 150) return 60 + Math.round(((150 - ms) / 70) * 20);
+        if (ms >= 150 && ms < 200) return 15 + Math.random() * 8;
+        if (ms >= 200 && ms < 350) return 20 + Math.random() * 10;
+        if (ms >= 350 && ms < 600) return 28 + Math.random() * 12;
+        if (ms >= 600 && ms < 1500) return 45 + Math.random() * 15;
+        if (ms >= 1500) return 75;
+        return 30;
+    }
+    
+    renderReport(isBot, prob, data) {
+        const typeLabel = data.inputType === InputTypeDetector.TYPES.TOUCH ? 'TOUCH' : 'MOUSE';
+        const thresholdLabel = `(threshold: ${data.threshold}%)`;
+        
+        this.writeLog(`--- ANÁLISE BIOMÉTRICA [${typeLabel}] ---`, isBot ? "danger" : "success");
+        
+        const eventSummary = this.eventLog.length > 0 ? 
+            this.eventLog.map(e => e.event).join(' → ') : 'Nenhum evento registrado';
+        this.writeLog(`EVENTOS: ${eventSummary}`);
 
         if (isBot) {
             this.check.checked = false;
             this.area.style.borderColor = "var(--red)";
-            this.writeLog(`PROBALIDADE_BOT: ${data.score}%`, "danger");
+            this.writeLog(`PROBABILIDADE_BOT: ${data.score}% ${thresholdLabel}`, "danger");
             this.writeLog(`STATUS: ACESSO_NEGADO`, "danger");
 
-
-            data.reasons.forEach(reason => {
-                this.writeLog(`>> ${reason}`, "danger");
+            data.reasons.forEach((reason, idx) => {
+                this.writeLog(`>> [${idx+1}] ${reason}`, "danger");
             });
         } else {
             this.area.style.borderColor = "var(--green)";
-            this.writeLog(`PROBALIDADE_BOT: ${data.score}%`, "success");
-            this.writeLog(`STATUS: 'HUMANO' CONFIRMADO`, "success");
-            this.writeLog(`>> Sinais 'biomecânicos' consistentes.`);
+            this.writeLog(`PROBABILIDADE_BOT: ${data.score}% ${thresholdLabel}`, "success");
+            this.writeLog(`STATUS: HUMANO CONFIRMADO`, "success");
         }
 
+        if (data.fittsAnalysis) {
+            this.writeLog(`LEI_FITTS: D=${data.fittsAnalysis.D}px W=${data.fittsAnalysis.W}px ID=${data.ID.toFixed(2)}`);
+            this.writeLog(`THROUGHPUT: ${data.fittsAnalysis.throughputBits} bits/s`);
+        }
+        
         this.writeLog(`DWELL: ${data.dwellTime.toFixed(0)}ms | REACTION: ${data.decisionTime.toFixed(0)}ms`);
     }
 
     analyzeJitter(pts) {
-        if (pts.length < 5) return { jerk: 0, isWhiteNoise: false };
-        
+        if (pts.length < 5) return { jerk: 0, isWhiteNoise: false, tremor: 0, spectralPower: 0, cv: 0.2, syncRatio: 0 };
         let dts = [];
-        for (let i = 1; i < pts.length; i++) dts.push(pts[i].t - pts[i-1].t);
+        for (let i = 1; i < pts.length; i++) dts.push(Math.max(8, pts[i].t - pts[i-1].t)); // ms
         const meanDt = dts.reduce((a,b)=>a+b)/dts.length;
         const varianceDt = dts.reduce((a,b) => a + Math.pow(b - meanDt, 2), 0) / dts.length;
-        
-        let velocities = [];
+        const stdDevDt = Math.sqrt(varianceDt);
+
+        let velocities = [], accelerations = [];
         for (let i = 1; i < pts.length; i++) {
             const dx = pts[i].x - pts[i-1].x;
             const dy = pts[i].y - pts[i-1].y;
-            const dt = dts[i-1] || 16;
-            velocities.push(Math.sqrt(dx*dx + dy*dy) / (dt + 1));
+            const dtSec = Math.max(0.008, dts[i-1] / 1000);
+            velocities.push(Math.sqrt(dx*dx + dy*dy) / dtSec); // px/s
         }
+        for (let i = 1; i < velocities.length; i++) {
+            accelerations.push(Math.abs(velocities[i] - velocities[i-1]) / Math.max(0.008, dts[i] / 1000)); // px/s^2
+        }
+
+        const meanVel = Math.max(0.1, velocities.reduce((a,b)=>a+b,0)/Math.max(1, velocities.length));
+        const varVel = velocities.reduce((a,b) => a + Math.pow(b - meanVel, 2), 0) / Math.max(1, velocities.length) || 0;
+        const stdDevVel = Math.sqrt(Math.max(0, varVel));
+        const cv = Math.max(0, stdDevVel / Math.max(0.001, meanVel));
+
+        let tremor = 0;
+        for (let i = 2; i < accelerations.length; i++) {
+            tremor += Math.abs(accelerations[i] - accelerations[i-1]);
+        }
+        tremor = tremor / Math.max(1, accelerations.length - 2);
+
+        const perfectMultiples = dts.filter(dt => 
+            Math.abs(dt - 16.67) < 1 || Math.abs(dt - 33.33) < 1 || Math.abs(dt - 50) < 1
+        ).length;
+        const syncRatio = dts.length > 0 ? perfectMultiples / dts.length : 0;
         
-        const meanVel = velocities.reduce((a,b)=>a+b)/velocities.length;
-        const varVel = velocities.reduce((a,b) => a + Math.pow(b - meanVel, 2), 0) / velocities.length;
-    
-        const isSuspiciouslySmooth = varianceDt < 0.02 && varVel < 0.05;
-        
-        return { isWhiteNoise: isSuspiciouslySmooth, jerk: varVel };
+        const jitterThreshold = this.inputType === InputTypeDetector.TYPES.TOUCH ? 0.12 : 0.08;
+        const isSuspiciouslySmooth = cv < jitterThreshold || (varVel < 0.01 && stdDevDt < 1) || syncRatio > 0.75;
+
+        const entropia = dts.reduce((e, dt) => e - (dt/meanDt) * Math.log2(Math.max(dt/meanDt, 0.001)), 0) / dts.length;
+        return { jerk: Math.min(1, Math.max(0, tremor / 50)), isWhiteNoise: isSuspiciouslySmooth, tremor: Math.min(1, cv), spectralPower: entropia, cv, syncRatio };
+    }
+
+    analyzeSpeed(pts) {
+        if (pts.length < 3) return { avg:0, max:0, score:0, distribution:'uniform', mode:0, skewness:0 };
+
+        let speeds = [];
+        for (let i=1;i<pts.length;i++){
+            const dx = pts[i].x - pts[i-1].x;
+            const dy = pts[i].y - pts[i-1].y;
+            const dtMs = Math.max(8, pts[i].t - pts[i-1].t);
+            const dt = dtMs / 1000;
+            speeds.push(Math.sqrt(dx*dx+dy*dy)/dt);
+        }
+        const avg = speeds.reduce((a,b)=>a+b,0)/speeds.length;
+        const max = Math.max(...speeds);
+        const min = Math.min(...speeds);
+        const variance = speeds.reduce((a,b)=>a+Math.pow(b-avg,2),0)/speeds.length;
+        const stdDev = Math.sqrt(variance);
+        const skewness = stdDev > 0 ? speeds.reduce((a,b)=>a+Math.pow((b-avg)/stdDev,3),0)/(speeds.length) : 0;
+        const binSize = (max - min) / Math.max(1, Math.sqrt(speeds.length));
+        const bins = {};
+        speeds.forEach(s => {
+            const bin = Math.floor((s - min) / (binSize || 1));
+            bins[bin] = (bins[bin] || 0) + 1;
+        });
+        const mode = avg;
+        const humanLikeDistribution = skewness > 0.3 && avg > 50 && stdDev / avg > 0.2 && stdDev / avg < 2.0;
+        const accelerationPattern = max / Math.max(avg,1) > 1.5 && max / Math.max(avg,1) < 4;
+        const score = humanLikeDistribution && accelerationPattern ? 
+            Math.min(1, 0.7 + 0.3 * Math.max(0, Math.min(1, (skewness - 0.3) / 1.0))) : 
+            Math.max(0, Math.min(1, avg / 600));
+        return { avg, max, min, score, distribution: humanLikeDistribution ? 'lognormal' : 'uniform', mode, skewness };
+    }
+
+    analyzeAcceleration(pts) {
+        if (pts.length < 4) return { avg:0, var:0, score:0, maxAccel:0, naturalAccel:false };
+
+        const speeds = [];
+        let dts = [];
+        for (let i=1;i<pts.length;i++){
+            const dx = pts[i].x - pts[i-1].x;
+            const dy = pts[i].y - pts[i-1].y;
+            const dtMs = Math.max(8, pts[i].t - pts[i-1].t);
+            const dt = dtMs / 1000;
+            dts.push(dt);
+            speeds.push(Math.sqrt(dx*dx+dy*dy)/dt);
+        }
+        const acc = [];
+        for (let i=1;i<speeds.length;i++) {
+            const dv = speeds[i] - speeds[i-1];
+            const dt = dts[i] || 0.016;
+            acc.push(dv / dt); // px/s^2
+        }
+        const mean = acc.reduce((a,b)=>a+Math.abs(b),0)/Math.max(1,acc.length);
+        const variance = acc.length ? acc.reduce((a,b)=>a+Math.pow(b-mean,2),0)/acc.length : 0;
+        const stdDev = Math.sqrt(variance);
+        const maxAccel = acc.length ? Math.max(...acc.map(a => Math.abs(a))) : 0;
+
+        const accelerationInG = maxAccel / 1000; // scaled unit for heuristics
+
+        const maxAccelThreshold = this.inputType === InputTypeDetector.TYPES.TOUCH ? 6000 : 5000;
+        const naturalAccel = maxAccel < maxAccelThreshold && maxAccel > 50;
+        const smoothAccel = stdDev / (mean + 0.1) < 3.0;
+
+        const score = (naturalAccel && smoothAccel) ? 
+            Math.min(1, 0.8 + 0.2 * Math.max(0, Math.min(1, (stdDev / (mean + 0.1) - 0.5) / 2.0))) :
+            Math.max(0, Math.min(1, mean / 2000));
+        return { avg: mean, var: variance, score, maxAccel, accelerationInG: Math.min(10, accelerationInG), naturalAccel: naturalAccel && smoothAccel };
+    }
+
+    analyzeCurvature(pts) {
+        if (pts.length < 4) return { score:0, curvature:0, straightness:0, angleVariance:0 };
+        let angleSum = 0, count = 0, angles = [];
+        for (let i=2;i<pts.length;i++){
+            const a = {x: pts[i-2].x, y: pts[i-2].y};
+            const b = {x: pts[i-1].x, y: pts[i-1].y};
+            const c = {x: pts[i].x, y: pts[i].y};
+            const v1 = {x: b.x - a.x, y: b.y - a.y};
+            const v2 = {x: c.x - b.x, y: c.y - b.y};
+            const dot = v1.x*v2.x + v1.y*v2.y;
+            const mag1 = Math.hypot(v1.x,v1.y); 
+            const mag2 = Math.hypot(v2.x,v2.y);
+            if (mag1*mag2===0) continue;
+            let ang = Math.acos(Math.max(-1, Math.min(1, dot/(mag1*mag2))));
+            angles.push(ang);
+            angleSum += ang;
+            count++;
+        }
+        const avgAngle = count ? angleSum/count : 0;
+        const angleVariance = count ? angles.reduce((a,b)=>a+Math.pow(b-avgAngle,2),0)/count : 0;
+        const angleStdDev = Math.sqrt(angleVariance);
+        const naturalCurvature = avgAngle > 0.2 && avgAngle < 1.2;
+        const smoothCurvature = angleStdDev < avgAngle + 0.5;
+        let pathLength = 0;
+        for (let i=1;i<pts.length;i++){
+            pathLength += Math.hypot(pts[i].x - pts[i-1].x, pts[i].y - pts[i-1].y);
+        }
+        const euclidean = Math.hypot(pts[pts.length-1].x - pts[0].x, pts[pts.length-1].y - pts[0].y);
+        const straightness = euclidean > 0 ? euclidean / pathLength : 0;
+        const score = (naturalCurvature && smoothCurvature && straightness > 0.7) ?
+            Math.min(1, 0.7 + 0.3 * Math.min(1, straightness)) :
+            Math.max(0, Math.min(1, straightness * 0.5));
+        return { score, curvature: avgAngle, straightness, angleVariance, naturalCurvature: naturalCurvature && smoothCurvature };
+    }
+
+    analyzeEntropy(pts) {
+        if (pts.length < 4) return { score:0, entropy:0, directionBias:0, predictability:0 };
+        const directions = [];
+        for (let i=1;i<pts.length;i++){
+            const dx = pts[i].x - pts[i-1].x;
+            const dy = pts[i].y - pts[i-1].y;
+            if (Math.hypot(dx,dy) < 0.5) continue;
+            const ang8 = Math.round(Math.atan2(dy,dx)/ (Math.PI/4)) % 8;
+            directions.push(ang8);
+        }
+        if (directions.length === 0) return { score:0, entropy:0, directionBias:0, predictability:0 };
+        const freq = {};
+        directions.forEach(d => freq[d] = (freq[d] || 0) + 1);
+        const total = directions.length;
+        let entropy = 0;
+        Object.values(freq).forEach(c => {
+            const p = c / total;
+            if (p > 0) entropy -= p * Math.log2(p);
+        });
+        const maxEntropy = Math.log2(Object.keys(freq).length || 1);
+        const normalizedEntropy = maxEntropy > 0 ? entropy / maxEntropy : 0;
+        const axisAlignedDirs = directions.filter(d => d % 2 === 0).length;
+        const directionBias = axisAlignedDirs / total;
+        const maxFreq = Math.max(...Object.values(freq));
+        const dominance = maxFreq / total;
+        const predictability = dominance > 0.6 ? 1 - normalizedEntropy : normalizedEntropy;
+        const humanLikeEntropy = normalizedEntropy > 0.4 && normalizedEntropy < 0.95;
+        const score = humanLikeEntropy ? 
+            normalizedEntropy :
+            Math.max(0, Math.min(1, 1 - Math.abs(normalizedEntropy - 0.65) / 0.5));
+        return { score, entropy, directionBias, predictability, normalizedEntropy, dominance };
+    }
+
+    countPauses(pts) {
+        if (pts.length < 3) return { count:0, score:0, meanPause:0, pausePattern:'none' };
+        let pauses = [];
+        let pauseCount = 0;
+        const pauseThreshold = 80;
+        for (let i=1;i<pts.length;i++){
+            const dt = pts[i].t - pts[i-1].t;
+            if (dt > pauseThreshold) {
+                pauses.push(dt);
+                pauseCount++;
+            }
+        }
+        if (pauseCount === 0) {
+            return { count: 0, score: 0.1, meanPause: 0, pausePattern: 'continuous', maxPause: 0 };
+        }
+        const meanPause = pauses.reduce((a,b)=>a+b,0) / pauses.length;
+        const pauseVariance = pauses.reduce((a,b)=>a+Math.pow(b-meanPause,2),0) / pauses.length;
+        const pauseStdDev = Math.sqrt(pauseVariance);
+        const pauseCV = meanPause > 0 ? pauseStdDev / meanPause : 0;
+        const dispersão = pauseVariance / (meanPause + 0.1);
+        const poissonLike = dispersão > 0.8 && dispersão < 3.0;
+        const naturalPauseTiming = meanPause > 50 && meanPause < 500;
+        const score = (poissonLike && naturalPauseTiming && pauseCV > 0.2) ?
+            Math.min(1, 0.6 + 0.4 * Math.max(0, Math.min(1, pauseCV / 1.0))) :
+            Math.max(0, Math.min(1, Math.min(pauseCount / 5, 1 - dispersão / 5)));
+        return { count: pauseCount, score: Math.max(0, Math.min(1, score)), meanPause, pauseStdDev, pauseCV, dispersão, pausePattern: poissonLike ? 'natural_poisson' : (dispersão > 3 ? 'irregular' : 'regular'), maxPause: Math.max(...pauses) };
     }
 
     checkTemporalPrecision(pts) {
-        if (pts.length < 5) return false; 
-        
+        if (pts.length < 5) return { score:0, isSuspicious:false, perfectSync:0, variance:0 };
         let dts = [];
         for (let i = 1; i < pts.length; i++) {
             dts.push(pts[i].t - pts[i-1].t);
         }
-        const perfectMultiples = dts.filter(dt => Math.abs(dt - 16.67) < 1 || Math.abs(dt - 33.33) < 1).length;
-        const suspiciousSync = dts.length > 0 && perfectMultiples / dts.length > 0.7;
-
-        return suspiciousSync;
+        const refreshRates = [2.78, 4.17, 5, 8.33, 10, 16.67, 20, 33.33, 50];
+        const tolerance = 0.5;
+        let syncCount = 0;
+        dts.forEach(dt => {
+            refreshRates.forEach(rate => {
+                if (Math.abs(dt - rate) < tolerance || Math.abs(dt - rate*2) < tolerance) {
+                    syncCount++;
+                }
+            });
+        });
+        const syncRatio = dts.length > 0 ? syncCount / dts.length : 0;
+        const meanDt = dts.reduce((a,b)=>a+b)/dts.length;
+        const variance = dts.reduce((a,b)=>a+Math.pow(b-meanDt,2),0)/dts.length;
+        const cv = Math.sqrt(variance) / meanDt;
+        const humanLikeVariance = cv > 0.12;
+        const suspiciousSync = syncRatio > 0.65;
+        return { score: suspiciousSync ? 0.9 : (humanLikeVariance ? 0.2 : 0.5), isSuspicious: suspiciousSync && !humanLikeVariance, perfectSync: syncRatio, variance: cv, meanDt, meanDtHz: 1000 / meanDt };
     }
-
-
 }
+
 
 new Vhum();
 </script>
