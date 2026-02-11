@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vhum - verificador de humano - bot verify</title>
+	<meta name="description" content="vhum - verificador de humano - bot verify; javascript responsavél por capturar eventos click e touch para serem trabalhados no servidor.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="icaro - github.com/wzeronine">
+    <meta property="og:title" content="vhum js - verificador de humano - bot verify ">
+    <meta property="og:description" content="vhum - verificador de humano - bot verify; javascript responsavél por capturar eventos click e touch para serem trabalhados no servidor.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vhum.com">
+    <meta name="twitter:site" content="@iwzeronine">
+    
+    <style>:root{--bg-color:#000;--text-color:#fff;--primary-color:#fff;--border-color:#eaeaea;--hover-color:#f5f5f5;box-sizinG:border-box}body{font-family:monospace;background-color:var(--bg-color);color:var(--text-color);margin:0;padding:0;justify-content:center;align-items:center;min-height:100vh}.container{width:300px;max-width:300px;;margin:50px auto;width:100%;padding:2rem;border:1px solid var(--border-color);box-shadow:0 4px 6px rgb(0 0 0 / .05);box-sizing:border-box}h1{font-size:1.5rem;font-weight:300;margin-bottom:1.5rem}.checkbox-container{align-items:center;margin-bottom:1.5rem;cursor:pointer;user-select:none}.custom-checkbox{width:20px;height:20px;display:inline-block;border:2px solid var(--primary-color);border-radius:4px;margin-right:12px;justify-content:center;align-items:center;transition:all 0.2s}.custom-checkbox.checked{background-color:var(--primary-color)}.custom-checkbox.checked::after{content:"✓";color:#fff;font-size:14px}.data-display{width:100%;padding:2rem;margin-top:2rem;background-color:#f9f9f9;color:#000;border-radius:6px;font-family:monospace;font-size:.875rem;overflow:scroll}.status{margin-top:1rem;padding:.5rem;border-radius:4px;font-weight:500}.status.verified{background-color:#e6f7e6;color:#1a8917}.status.bot{background-color:#feecec;color:#d33f3f}.archives{width:300px;margin:10px auto;text-align:center}.archives a{color:#fff;text-align:center}</style>
+<script async="" src="index_arquivos/js"></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-V1H2KVFN0X');
+</script></head>
+
+
+<body>
+    <div class="container">
+        <h1>vhum</h1>
+        <div class="checkbox-container">
+            <input type="checkbox" class="custom-checkbox" id="vhum-check"/>
+            <span>não sou robô</span>
+        </div>
+            
+        <div class="data">
+            <h3>data:</h3>
+            <pre id="data-display"></pre>
+            <div class="status" id="verificationStatus"></div>
+        </div>
+    </div>
+    <div class="archives"></span><a href="./vhum.min.js" target="_blank">vhum.min.js(4kb)</a></div>
+	<script defer="defer" src="vhum.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded',() => {const checkboxElement=document.getElementById("vhum-check");const displayElement=document.getElementById("data-display");if (checkboxElement && displayElement){new HumanVerifier(checkboxElement, displayElement,3);}});
+    </script>
+
+
+
+</body></html>
