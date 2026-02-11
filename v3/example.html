@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vhum v3 - Demo Interativa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d6efd;
+            --success: #198754;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --dark: #212529;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .main-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header-section {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header-section p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .demo-card h2 {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .threshold-control {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .threshold-control label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .threshold-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #e9ecef;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .threshold-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);
+            transition: all 0.2s;
+        }
+        
+        .threshold-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.6);
+        }
+        
+        .threshold-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 8px rgba(13, 110, 253, 0.4);
+            transition: all 0.2s;
+        }
+        
+        .threshold-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .threshold-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .threshold-labels {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .vhum-area {
+            border: 3px dashed var(--primary);
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .vhum-area:hover {
+            border-color: var(--success);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e7f5f0 100%);
+            transform: translateY(-2px);
+        }
+        
+        .vhum-area.active {
+            border-color: var(--success);
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            box-shadow: 0 8px 20px rgba(25, 135, 84, 0.2);
+        }
+        
+        .checkbox-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark);
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .checkbox-label input {
+            width: 28px;
+            height: 28px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: var(--success);
+        }
+        
+        .result-section {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 8px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .result-section.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-human {
+            background: #d4edda;
+            border-left: 5px solid var(--success);
+            color: var(--success);
+        }
+        
+        .result-bot {
+            background: #f8d7da;
+            border-left: 5px solid var(--danger);
+            color: var(--danger);
+        }
+        
+        .verdict-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .result-metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-size: 0.95rem;
+        }
+        
+        .result-metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .metric-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .progress-metric {
+            margin-top: 15px;
+            padding: 12px 0;
+        }
+        
+        .progress-metric label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .progress {
+            height: 6px;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .info-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-top: 10px;
+        }
+        
+        .badge-mouse {
+            background: #cfe2ff;
+            color: var(--primary);
+        }
+        
+        .badge-touch {
+            background: #cff4fc;
+            color: #0c5460;
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            color: #856404;
+        }
+        
+        .info-section {
+            background: #f0f2f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        .info-section h3 {
+            color: var(--primary);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+    </style>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header-section">
+            <h1>vhum v3</h1>
+            <p>Análise Comportamental de Biosinais — Detecte Bots Inteligentemente</p>
+        </div>
+
+        <!-- Main Demo Card -->
+        <div class="demo-card">
+            <!-- Instructions -->
+            <div class="instructions">
+                <strong>💡 Como usar:</strong> Ajuste os thresholds abaixo e depois clique/toque na área de teste. vhum analisará seus padrões biométricos em tempo real.
+            </div>
+
+            <!-- Threshold Controls -->
+            <h2>⚙️ Configuração de Sensibilidade</h2>
+            
+            <div class="threshold-control">
+                <label>🖱️ Threshold Mouse</label>
+                <p style="font-size: 0.9rem; color: #6c757d; margin-bottom: 10px;">Probabilidade limite para classificar como bot (0 = muito rigoroso, 1 = muito tolerante)</p>
+                <input type="range" id="thresholdMouse" class="threshold-slider" min="0.3" max="0.9" step="0.05" value="0.68">
+                <div class="threshold-display">
+                    <span class="threshold-labels">← Mais Rigoroso</span>
+                    <span class="threshold-value" id="thresholdMouseValue">0.68</span>
+                    <span class="threshold-labels">Mais Tolerante →</span>
+                </div>
+            </div>
+
+            <div class="threshold-control">
+                <label>📱 Threshold Touch</label>
+                <p style="font-size: 0.9rem; color: #6c757d; margin-bottom: 10px;">Ajuste para toque/mobile (geralmente mais baixo que mouse)</p>
+                <input type="range" id="thresholdTouch" class="threshold-slider" min="0.3" max="0.9" step="0.05" value="0.62">
+                <div class="threshold-display">
+                    <span class="threshold-labels">← Mais Rigoroso</span>
+                    <span class="threshold-value" id="thresholdTouchValue">0.62</span>
+                    <span class="threshold-labels">Mais Tolerante →</span>
+                </div>
+            </div>
+
+            <!-- Test Area -->
+            <h2 style="margin-top: 35px;">🎯 Área de Teste</h2>
+            
+            <div class="vhum-area" id="vhum-area">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="main-check">
+                    <span>Clique ou toque aqui para testar</span>
+                </label>
+            </div>
+
+            <!-- Result Display -->
+            <div id="result" class="result-section">
+                <div class="verdict-title" id="verdictTitle"></div>
+                
+                <div class="result-metric">
+                    <span class="metric-label">Probabilidade</span>
+                    <span class="metric-value"><span id="probability">-</span>%</span>
+                </div>
+
+                <div class="result-metric">
+                    <span class="metric-label">Tipo de Input</span>
+                    <span class="metric-value" id="inputType">-</span>
+                </div>
+
+                <div class="result-metric">
+                    <span class="metric-label">Threshold Aplicado</span>
+                    <span class="metric-value" id="thresholdApplied">-</span>
+                </div>
+
+                <!-- Detailed Metrics -->
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(0,0,0,0.1);">
+                    <h5 style="color: var(--dark); margin-bottom: 15px;">📊 Análise Detalhada</h5>
+                    
+                    <div class="progress-metric">
+                        <label>Tempo de Reação</label>
+                        <div class="progress">
+                            <div class="progress-bar" id="barReaction" style="width: 0%;"></div>
+                        </div>
+                        <small style="color: #6c757d;"><span id="valueReaction">-</span>ms</small>
+                    </div>
+
+                    <div class="progress-metric">
+                        <label>Tempo de Permanência (Dwell)</label>
+                        <div class="progress">
+                            <div class="progress-bar" id="barDwell" style="width: 0%;"></div>
+                        </div>
+                        <small style="color: #6c757d;"><span id="valueDwell">-</span>ms</small>
+                    </div>
+
+                    <div class="progress-metric">
+                        <label>Velocidade</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" id="barSpeed" style="width: 0%;"></div>
+                        </div>
+                        <small style="color: #6c757d;"><span id="valueSpeed">-</span> / 100</small>
+                    </div>
+
+                    <div class="progress-metric">
+                        <label>Jitter (Variação)</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" id="barJitter" style="width: 0%;"></div>
+                        </div>
+                        <small style="color: #6c757d;"><span id="valueJitter">-</span></small>
+                    </div>
+
+                    <div class="progress-metric">
+                        <label>Aceleração</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" id="barAccel" style="width: 0%;"></div>
+                        </div>
+                        <small style="color: #6c757d;"><span id="valueAccel">-</span> / 100</small>
+                    </div>
+
+                    <div class="progress-metric">
+                        <label>Curvatura</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" id="barCurvature" style="width: 0%;"></div>
+                        </div>
+                        <small style="color: #6c757d;"><span id="valueCurvature">-</span> / 100</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="info-section">
+                <h3>ℹ️ O que vhum analisa?</h3>
+                <p>
+                    <strong>10 dimensões de comportamento:</strong> Tempo de reação, permanência, lei de Fitts, sincronismo temporal, 
+                    variação de velocidade (jitter), distribuição de velocidades, aceleração, curvatura do trajeto, entropia direcional 
+                    e padrão de pausas. Cada uma dessas métricas alimenta uma rede neural adaptativa que aprende a distinguir padrões 
+                    humanos naturais de comportamentos robóticos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="vhum.js"></script>
+    <script>
+        let vhum = null;
+        const vhumArea = document.getElementById('vhum-area');
+        const thresholdMouseSlider = document.getElementById('thresholdMouse');
+        const thresholdTouchSlider = document.getElementById('thresholdTouch');
+        const thresholdMouseValue = document.getElementById('thresholdMouseValue');
+        const thresholdTouchValue = document.getElementById('thresholdTouchValue');
+        const resultDiv = document.getElementById('result');
+
+        // Initialize Vhum with current thresholds
+        function initVhum() {
+            const thresholdMouse = parseFloat(thresholdMouseSlider.value);
+            const thresholdTouch = parseFloat(thresholdTouchSlider.value);
+            
+            vhum = new Vhum({
+                thresholdMouse: thresholdMouse,
+                thresholdTouch: thresholdTouch,
+                container: '#vhum-area',
+                checkbox: '#main-check'
+            });
+
+            vhum.on('result', handleResult);
+        }
+
+        // Update threshold value display and reinit
+        thresholdMouseSlider.addEventListener('input', (e) => {
+            thresholdMouseValue.textContent = parseFloat(e.target.value).toFixed(2);
+            initVhum();
+        });
+
+        thresholdTouchSlider.addEventListener('input', (e) => {
+            thresholdTouchValue.textContent = parseFloat(e.target.value).toFixed(2);
+            initVhum();
+        });
+
+        // Handle results
+        function handleResult(data) {
+            const probability = (data.probability * 100).toFixed(2);
+            const isHuman = data.verdict === 1;
+
+            // Verdict
+            const verdictTitle = document.getElementById('verdictTitle');
+            if (isHuman) {
+                resultDiv.className = 'result-section show result-human';
+                verdictTitle.innerHTML = '✅ <strong>Humano Verificado!</strong>';
+            } else {
+                resultDiv.className = 'result-section show result-bot';
+                verdictTitle.innerHTML = '⚠️ <strong>Comportamento Suspeito Detectado</strong>';
+            }
+
+            // Probability
+            document.getElementById('probability').textContent = probability;
+
+            // Input type
+            const inputTypeEl = document.getElementById('inputType');
+            if (data.inputType === 'mouse') {
+                inputTypeEl.innerHTML = '<span class="info-badge badge-mouse">🖱️ MOUSE</span>';
+            } else if (data.inputType === 'touch') {
+                inputTypeEl.innerHTML = '<span class="info-badge badge-touch">📱 TOUCH</span>';
+            } else {
+                inputTypeEl.textContent = data.inputType;
+            }
+
+            // Threshold
+            document.getElementById('thresholdApplied').textContent = data.thresholdUsed.toFixed(2);
+
+            // Detailed metrics
+            const details = data.analysisDetails;
+            
+            // Reaction time (0-500ms is typical)
+            const reactionPct = Math.min(100, (details.reaction / 500) * 100);
+            document.getElementById('barReaction').style.width = reactionPct + '%';
+            document.getElementById('barReaction').className = 'progress-bar ' + (details.reaction < 80 ? 'bg-danger' : 'bg-success');
+            document.getElementById('valueReaction').textContent = Math.round(details.reaction);
+
+            // Dwell time
+            const dwellMax = data.inputType === 'touch' ? 1500 : 1000;
+            const dwellPct = Math.min(100, (details.dwell / dwellMax) * 100);
+            document.getElementById('barDwell').style.width = dwellPct + '%';
+            document.getElementById('barDwell').className = 'progress-bar ' + (details.dwell < 40 || details.dwell > dwellMax ? 'bg-danger' : 'bg-success');
+            document.getElementById('valueDwell').textContent = Math.round(details.dwell);
+
+            // Speed
+            const speedPct = (details.speed * 100);
+            document.getElementById('barSpeed').style.width = speedPct + '%';
+            document.getElementById('valueSpeed').textContent = Math.round(speedPct);
+
+            // Jitter
+            const jitterPct = (details.jitter * 100);
+            document.getElementById('barJitter').style.width = jitterPct + '%';
+            document.getElementById('valueJitter').textContent = jitterPct.toFixed(1);
+
+            // Acceleration
+            const accelPct = (details.accel * 100);
+            document.getElementById('barAccel').style.width = accelPct + '%';
+            document.getElementById('valueAccel').textContent = Math.round(accelPct);
+
+            // Curvature
+            const curvaturePct = (details.curvature * 100);
+            document.getElementById('barCurvature').style.width = curvaturePct + '%';
+            document.getElementById('valueCurvature').textContent = Math.round(curvaturePct);
+
+            // Visual feedback on area
+            vhumArea.classList.add('active');
+            setTimeout(() => vhumArea.classList.remove('active'), 500);
+
+            // Log for debugging
+            console.log('Vhum Result:', data);
+        }
+
+        // Initialize on load
+        initVhum();
+    </script>
+</body>
+</html>
